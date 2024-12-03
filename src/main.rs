@@ -5,6 +5,12 @@ enum Media {
     Audiobook { title: String },
 }
 
+impl Media {
+    fn description(&self) -> String {
+        String::from("Media Description")
+    }
+}
+
 fn print_media(media: Media) {
     println!("{:#?}", media);
 }
@@ -19,8 +25,11 @@ fn main() {
     };
     let bad_book = Media::Book {
         title: String::from("Bad Book"),
-        author: String::from("Bad Title")
+        author: String::from("Bad Title"),
     };
+
+    audiobook.description();
+
     print_media(good_movie);
     print_media(bad_book);
     print_media(audiobook);
