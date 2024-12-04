@@ -3,6 +3,8 @@ enum Media {
     Book { title: String, author: String },
     Movie { title: String, director: String },
     Audiobook { title: String },
+    Podcast(u32),
+    Placeholder,
 }
 
 impl Media {
@@ -27,7 +29,28 @@ impl Media {
             Media::Audiobook { title } => {
                 format!("Audiobook: {} ", title)
             }
+            Media::Podcast(id) => {
+                format!("Podcast: {}", id)
+            }
+            Media::Placeholder => {
+                format!("Placeholder")
+            }
         }
+    }
+}
+
+#[derive(Debug)]
+struct Catalog {
+    items: Vec<Media>,
+}
+
+impl Catalog {
+    fn new() -> Self {
+        Catalog { items: vec![] }
+    }
+
+    fn add(&mut self, media: Media) {
+        self.items.push(media);
     }
 }
 
@@ -47,12 +70,24 @@ fn main() {
         title: String::from("Bad Book"),
         author: String::from("Bad Title"),
     };
+    let podcast = Media::Podcast(10);
+    let placeholder = Media::Placeholder;
+
+    let mut catalog = Catalog::new();
 
     println!("{}", audiobook.description());
     println!("{}", good_movie.description());
     println!("{}", bad_book.description());
 
-    print_media(good_movie);
-    print_media(bad_book);
-    print_media(audiobook);
+    // print_media(good_movie);
+    // print_media(bad_book);
+    // print_media(audiobook);
+
+    catalog.add(audiobook);
+    catalog.add(good_movie);
+    catalog.add(bad_book);
+    catalog.add(podcast);
+    catalog.add(placeholder);
+
+    println!("{:#?}", catalog);
 }
