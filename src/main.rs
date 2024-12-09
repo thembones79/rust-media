@@ -103,17 +103,17 @@ fn main() {
     catalog.add(podcast);
     catalog.add(placeholder);
 
-    // let item = catalog.get_by_index(0);
+    let item = catalog.get_by_index(0);
     // println!("Item: {:#?}", item);
 
-    match catalog.get_by_index(60) {
-        Some(value) => {
-            println!("Item: {:#?}", value);
-        }
-        None => {
-            println!("No value here!");
-        }
-    }
+    // match catalog.get_by_index(60) {
+    //     Some(value) => {
+    //         println!("Item: {:#?}", value);
+    //     }
+    //     None => {
+    //         println!("No value here!");
+    //     }
+    // }
 
     // if let Some(value) = catalog.get_by_index(98980) {
     //     println!("Item in pattern match: {:#?}", value)
